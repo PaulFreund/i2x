@@ -1,0 +1,14 @@
+{
+    "irc" : {
+        "host":     "",
+        "port":     "",
+        "name":     "",
+        "channel":  ""
+    },
+    "xmpp" : {
+        "host":     "",
+        "port":     "",
+        "jid":      "",
+        "password": ""
+    }
+}
