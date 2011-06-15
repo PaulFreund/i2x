@@ -1,14 +1,15 @@
 {
     "irc" : {
-        "host":     "",
-        "port":     "",
-        "name":     "",
-        "channel":  ""
+        "host": "example.com",
+        "port": "6667",
+        "name": "ExampleNick",
+        "channel": "#examplechannel"
     },
     "xmpp" : {
-        "host":     "",
-        "port":     "",
-        "jid":      "",
-        "password": ""
+        "host": "example.com",
+        "port": "5222",
+        "jid": "examplebot@example.com",
+        "password": "examplepassword",
+        "admin": "exampleadmin@example.com"
     }
 }
