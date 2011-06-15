@@ -11,5 +11,8 @@
         "jid": "examplebot@example.com",
         "password": "examplepassword",
         "admin": "exampleadmin@example.com"
+    },
+    "store" : {
+        "file": "storage.db"
     }
 }
