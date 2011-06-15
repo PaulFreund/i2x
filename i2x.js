@@ -35,12 +35,12 @@ I2X = (function i2x() {
         
         onIRCMessage = function(from, to, message) {
             console.log('[IRC] From: '+from+', To: '+to+', Message: '+message);
-            xmpp.send(from+': '+message);
+            xmpp.emit('send', from+': '+message);
         },
         
         onXMPPMessage = function(from, to, message) {
             console.log('[JAB] From: '+from+', To: '+to+', Message: '+message);
-            irc.send(message);
+            irc.emit('send', message);
         }
         
         
