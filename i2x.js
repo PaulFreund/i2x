@@ -54,9 +54,8 @@ I2X = (function i2x() {
                 
             store.on('ready', function() {
                 store.emit('get', 'log', function(data) {
-                    if( !data ) {
+                    if(!data )
                         store.emit('set', 'log', {});
-                    }
                     
                     start();
                 });
@@ -64,8 +63,6 @@ I2X = (function i2x() {
         },
         
         start = function() {
-
-
                 irc.on ('message', onIRCMessage);
                 irc.on('command', onIRCCommand);
                 xmpp.on('message', onXMPPMessage);
@@ -93,15 +90,13 @@ I2X = (function i2x() {
         },
         
         onIRCMessage = function(from, to, message) {
-            logstring = '[IRC] From: '+from+', To: '+to+', Message: '+message;
-            console.log(logstring);
+            logstring = '[IRC] '+ from +': ' + message;
             store.emit('setSub', 'log', [Date.now()], logstring);
             xmpp.emit('send', from+': '+message);
         },
         
         onXMPPMessage = function(from, to, message) {
-            logstring = '[JAB] From: '+from+', To: '+to+', Message: '+message;
-            console.log(logstring);
+            logstring = '[JAB] '+ from +': ' + message;
             store.emit('setSub', 'log', [Date.now()], logstring);
             irc.emit('send', message);
         }
