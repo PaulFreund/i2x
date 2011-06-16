@@ -3,6 +3,7 @@
     Todo:
     -----
     
+    - Store getSub auto create 
     - Logging
     - Users
     - Router
@@ -71,26 +72,24 @@ I2X = (function i2x() {
         }, 
         
         onIRCCommand = function(from, to, command) {
-            if( from == 'BigWookie' ) {
-                var commandarr = command.split(' ');
-                
-                switch(commandarr[0]) {
-                
-                case 'insult':
-                    irc.emit('send', commandarr[1] + ' ist scheisse');
-                    break;
-                case 'printdb':
-                    store.emit('get', 'log', function(data) {
-                        if( data != null ) {
-                            for(var prop in data) {
-                                if(data.hasOwnProperty(prop))
-                                    irc.emit('send', util.inspect(data[prop]));
-                            }
+            var commandarr = command.split(' ');
+            
+            switch(commandarr[0]) {
+            
+            case 'insult':
+                irc.emit('send', commandarr[1] + ' ist scheisse');
+                break;
+            case 'printdb':
+                store.emit('get', 'log', function(data) {
+                    if(data) {
+                        for(var prop in data) {
+                            if(data.hasOwnProperty(prop))
+                                irc.emit('send', util.inspect(data[prop]));
                         }
-                    });
-                    break;
-                }   
-            }
+                    }
+                });
+                break;
+            }   
         },
         
         onIRCMessage = function(from, to, message) {
