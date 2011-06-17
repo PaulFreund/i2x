@@ -3,7 +3,6 @@
     Todo:
     -----
     
-    - Store getSub auto create 
     - Logging
     - Users
     - Router
@@ -14,7 +13,7 @@
     -----
     
     - StoreHandler
-    
+    - New StoreHandler functions
     
     
 */
@@ -53,20 +52,11 @@ I2X = (function i2x() {
             xmpp = xmppHandler.create(config.xmpp);
                 
             store.on('ready', function() {
-                store.emit('get', 'log', function(data) {
-                    if(!data )
-                        store.emit('set', 'log', {});
-                    
-                    start();
-                });
-            });        
-        },
-        
-        start = function() {
                 irc.on ('message', onIRCMessage);
                 irc.on('command', onIRCCommand);
                 xmpp.on('message', onXMPPMessage);
-        }, 
+            });        
+        },
         
         onIRCCommand = function(from, to, command) {
             var commandarr = command.split(' ');
@@ -91,13 +81,13 @@ I2X = (function i2x() {
         
         onIRCMessage = function(from, to, message) {
             logstring = '[IRC] '+ from +': ' + message;
-            store.emit('setSub', 'log', [Date.now()], logstring);
+            store.emit('set', 'log'+'.'+Date.now(), logstring);
             xmpp.emit('send', from+': '+message);
         },
         
         onXMPPMessage = function(from, to, message) {
             logstring = '[JAB] '+ from +': ' + message;
-            store.emit('setSub', 'log', [Date.now()], logstring);
+            store.emit('set', 'log'+'.'+Date.now(), logstring);
             irc.emit('send', message);
         }
         
