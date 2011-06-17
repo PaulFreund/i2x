@@ -3,9 +3,10 @@
     Todo:
     -----
     
-    - actionHandler
-    - MultiUser
+    - Wiring
     - Router
+    - Actions
+    - MultiUser
     - Webinterface
     
     Done: 
@@ -14,6 +15,8 @@
     - StoreHandler
     - New StoreHandler functions
     - Simple action add/del with database
+    - Extended ircHandler
+    - Extended xmppHandler
     
     
 */
@@ -26,12 +29,14 @@ I2X = (function i2x() {
     ////=============================================================================================
     // Requirements
     
-        util = require('util'),
         fs = require('fs'),
-        ircHandler = require('ircHandler.js'),
-        xmppHandler = require('xmppHandler.js'),
-        storeHandler = require('storeHandler.js'),
-    
+        util = require('util'),
+        ircHandler = require('ircHandler'),
+        xmppHandler = require('xmppHandler'),
+        storeHandler = require('storeHandler'),
+        routerHandler = require('routerHandler'),
+        actionHandler = require('actionHandler'),
+
     ////=============================================================================================
     // Propertys
     
@@ -39,56 +44,32 @@ I2X = (function i2x() {
         irc,
         xmpp,
         store,
+        router,
+        action,
         
     ////=============================================================================================
     // Methods
     
         ////-----------------------------------------------------------------------------------------
-        // Function
-        init = function() { 
+        // Initialize
+        init = function() {
             var config = JSON.parse(fs.readFileSync(__dirname+'/config.json'));
             
-            store = storeHandler.create(config.store);
             irc = ircHandler.create(config.irc);
             xmpp = xmppHandler.create(config.xmpp);
-                
+            store = storeHandler.create(config.store);
+            
             store.on('ready', function() {
+                router = routerHandler.create(config.router, store);
+                action = actionHandler.create(config.action, store);
+
+                // Wiring
+                
                 irc.on ('message', onIRCMessage);
                 irc.on('command', onIRCCommand);
                 xmpp.on('message', onXMPPMessage);
             });        
-        },
-        
-        onIRCCommand = function(from, to, command) {
-            var args = command.split(' ');
-            
-            
-            if( args[0] === 'add' ) {
-                store.emit('set', 'command.'+args[1], command.substr(args[0].length+args[1].length+2));
-            }
-            else if( args[0] === 'del' ) {
-                store.emit('remove', 'command.'+args[1]);
-            }
-            else {
-                store.emit('get', 'command.'+args[0], function(value) {
-                if( value != undefined )
-                    eval(value);
-            });
-            }
-        },
-        
-        onIRCMessage = function(from, to, message) {
-            logstring = '[IRC] '+ from +': ' + message;
-            store.emit('set', 'log'+'.'+Date.now(), logstring);
-            xmpp.emit('say', from+': '+message);
-        },
-        
-        onXMPPMessage = function(from, to, message) {
-            logstring = '[JAB] '+ from +': ' + message;
-            store.emit('set', 'log'+'.'+Date.now(), logstring);
-            irc.emit('say', message);
         }
-        
         
 
     ////=============================================================================================

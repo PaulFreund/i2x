@@ -5,6 +5,7 @@
         "name": "ExampleNick",
         "channel": "#examplechannel"
     },
+
     "xmpp" : {
         "host": "example.com",
         "port": "5222",
@@ -12,7 +13,17 @@
         "password": "examplepassword",
         "admin": "exampleadmin@example.com"
     },
+
     "store" : {
         "file": "storage.db"
+    },
+
+    "router" : {
+    },
+    
+    "action" : {
+    },
+    
+    "web" : {
     }
 }
