@@ -3,7 +3,6 @@
     Todo:
     -----
     
-    - Wiring
     - Router
     - Actions
     - MultiUser
@@ -17,6 +16,7 @@
     - Simple action add/del with database
     - Extended ircHandler
     - Extended xmppHandler
+    - Wiring
     
     
 */
@@ -63,11 +63,59 @@ I2X = (function i2x() {
                 router = routerHandler.create(config.router, store);
                 action = actionHandler.create(config.action, store);
 
-                // Wiring
+                //// Wiring        
+                // IRC
+                irc.on('message', function(from,to,message) {
+                    var arr = [];
+                    router.emit.apply(this, arr.concat('message', 'irc', arguments));
+                    action.emit.apply(this, arr.concat('message', 'irc',arguments));
+                });
+
+                irc.on('command', function(from,to,message) {
+                    var arr = [];
+                    action.emit.apply(this, arr.concat('command', 'irc',arguments));
+                });
                 
-                irc.on ('message', onIRCMessage);
-                irc.on('command', onIRCCommand);
-                xmpp.on('message', onXMPPMessage);
+                irc.on('event', function(from,to,message) {
+                    var arr = [];
+                    router.emit.apply(this, arr.concat('event', 'irc', arguments));
+                    action.emit.apply(this, arr.concat('event', 'irc', arguments));
+                });
+
+                // XMPP
+                xmpp.on('message', function(from,to,message) {
+                    var arr = [];
+                    router.emit.apply(this, arr.concat('message', 'xmpp', arguments));
+                    action.emit.apply(this, arr.concat('message', 'xmpp', arguments));
+                });
+
+                xmpp.on('command', function(from,to,message) {
+                    var arr = [];
+                    action.emit.apply(this, arr.concat('command', 'xmpp', arguments));
+                });
+                
+                xmpp.on('presence', function(from,to,message) {
+                    var arr = [];
+                    router.emit.apply(this, arr.concat('presence', 'xmpp', arguments));
+                    action.emit.apply(this, arr.concat('presence', 'xmpp', arguments));
+                });
+                
+                xmpp.on('subscribe', function(from,to,message) {
+                    var arr = [];
+                    router.emit.apply(this, arr.concat('subscribe', 'xmpp', arguments));
+                    action.emit.apply(this, arr.concat('subscribe', 'xmpp', arguments));
+                });
+
+                xmpp.on('unsubscribe', function(from,to,message) {
+                    var arr = [];
+                    router.emit.apply(this, arr.concat('unsubscribe', 'xmpp', arguments));
+                    action.emit.apply(this, arr.concat('unsubscribe', 'xmpp', arguments));
+                });
+                
+                // ROUTER
+                
+                // ACTION
+
             });        
         }
         
