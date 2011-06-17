@@ -3,17 +3,17 @@
     Todo:
     -----
     
-    - Logging
-    - Users
+    - actionHandler
+    - MultiUser
     - Router
     - Webinterface
-    - XMPP Multiuser
     
     Done: 
     -----
     
     - StoreHandler
     - New StoreHandler functions
+    - Simple action add/del with database
     
     
 */
@@ -35,6 +35,7 @@ I2X = (function i2x() {
     ////=============================================================================================
     // Propertys
     
+        self = this, 
         irc,
         xmpp,
         store,
@@ -59,36 +60,33 @@ I2X = (function i2x() {
         },
         
         onIRCCommand = function(from, to, command) {
-            var commandarr = command.split(' ');
+            var args = command.split(' ');
             
-            switch(commandarr[0]) {
             
-            case 'insult':
-                irc.emit('send', commandarr[1] + ' ist scheisse');
-                break;
-            case 'printdb':
-                store.emit('get', 'log', function(data) {
-                    if(data) {
-                        for(var prop in data) {
-                            if(data.hasOwnProperty(prop))
-                                irc.emit('send', util.inspect(data[prop]));
-                        }
-                    }
-                });
-                break;
-            }   
+            if( args[0] === 'add' ) {
+                store.emit('set', 'command.'+args[1], command.substr(args[0].length+args[1].length+2));
+            }
+            else if( args[0] === 'del' ) {
+                store.emit('remove', 'command.'+args[1]);
+            }
+            else {
+                store.emit('get', 'command.'+args[0], function(value) {
+                if( value != undefined )
+                    eval(value);
+            });
+            }
         },
         
         onIRCMessage = function(from, to, message) {
             logstring = '[IRC] '+ from +': ' + message;
             store.emit('set', 'log'+'.'+Date.now(), logstring);
-            xmpp.emit('send', from+': '+message);
+            xmpp.emit('say', from+': '+message);
         },
         
         onXMPPMessage = function(from, to, message) {
             logstring = '[JAB] '+ from +': ' + message;
             store.emit('set', 'log'+'.'+Date.now(), logstring);
-            irc.emit('send', message);
+            irc.emit('say', message);
         }
         
         
