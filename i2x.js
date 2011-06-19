@@ -7,6 +7,8 @@
     - Actions
     - MultiUser
     - Webinterface
+    - Virtual XMP Server
+    - Commenting
     
     Done: 
     -----
@@ -17,6 +19,8 @@
     - Extended ircHandler
     - Extended xmppHandler
     - Wiring
+    - Rewiring
+    - Basic Error handling
     
     
 */
@@ -31,6 +35,7 @@ I2X = (function i2x() {
     
         fs = require('fs'),
         util = require('util'),
+        events = require('events'),
         ircHandler = require('ircHandler'),
         xmppHandler = require('xmppHandler'),
         storeHandler = require('storeHandler'),
@@ -41,6 +46,7 @@ I2X = (function i2x() {
     // Propertys
     
         self = this, 
+        eventEmitter = new events.EventEmitter(),
         irc,
         xmpp,
         store,
@@ -53,69 +59,21 @@ I2X = (function i2x() {
         ////-----------------------------------------------------------------------------------------
         // Initialize
         init = function() {
+            process.addListener("unhandledException", function (err) {
+                console.log(err);
+            });
+            
             var config = JSON.parse(fs.readFileSync(__dirname+'/config.json'));
             
-            irc = ircHandler.create(config.irc);
-            xmpp = xmppHandler.create(config.xmpp);
-            store = storeHandler.create(config.store);
+            irc = ircHandler.create(eventEmitter, config.irc);
+            xmpp = xmppHandler.create(eventEmitter, config.xmpp);
+            store = storeHandler.create(eventEmitter, config.store);
             
-            store.on('ready', function() {
-                router = routerHandler.create(config.router, store);
-                action = actionHandler.create(config.action, store);
-
-                //// Wiring        
-                // IRC
-                irc.on('message', function(from,to,message) {
-                    var arr = [];
-                    router.emit.apply(this, arr.concat('message', 'irc', arguments));
-                    action.emit.apply(this, arr.concat('message', 'irc',arguments));
-                });
-
-                irc.on('command', function(from,to,message) {
-                    var arr = [];
-                    action.emit.apply(this, arr.concat('command', 'irc',arguments));
-                });
-                
-                irc.on('event', function(from,to,message) {
-                    var arr = [];
-                    router.emit.apply(this, arr.concat('event', 'irc', arguments));
-                    action.emit.apply(this, arr.concat('event', 'irc', arguments));
-                });
-
-                // XMPP
-                xmpp.on('message', function(from,to,message) {
-                    var arr = [];
-                    router.emit.apply(this, arr.concat('message', 'xmpp', arguments));
-                    action.emit.apply(this, arr.concat('message', 'xmpp', arguments));
-                });
-
-                xmpp.on('command', function(from,to,message) {
-                    var arr = [];
-                    action.emit.apply(this, arr.concat('command', 'xmpp', arguments));
-                });
-                
-                xmpp.on('presence', function(from,to,message) {
-                    var arr = [];
-                    router.emit.apply(this, arr.concat('presence', 'xmpp', arguments));
-                    action.emit.apply(this, arr.concat('presence', 'xmpp', arguments));
-                });
-                
-                xmpp.on('subscribe', function(from,to,message) {
-                    var arr = [];
-                    router.emit.apply(this, arr.concat('subscribe', 'xmpp', arguments));
-                    action.emit.apply(this, arr.concat('subscribe', 'xmpp', arguments));
-                });
-
-                xmpp.on('unsubscribe', function(from,to,message) {
-                    var arr = [];
-                    router.emit.apply(this, arr.concat('unsubscribe', 'xmpp', arguments));
-                    action.emit.apply(this, arr.concat('unsubscribe', 'xmpp', arguments));
-                });
-                
-                // ROUTER
-                
-                // ACTION
-
+            eventEmitter.on('store', function(type) {
+                if( type === 'ready' ) {
+                    router = routerHandler.create(eventEmitter,config.router);
+                    action = actionHandler.create(eventEmitter,config.action);
+                }
             });        
         }
         
