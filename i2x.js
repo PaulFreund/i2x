@@ -4,6 +4,8 @@
     -----
     
     - Router
+        - Subscribe/Unsubscribe
+        - Proper User handling (add/del)
     - Actions
     - MultiUser
     - Webinterface
@@ -21,6 +23,7 @@
     - Wiring
     - Rewiring
     - Basic Error handling
+    - Router basics
     
     
 */
@@ -71,7 +74,7 @@ I2X = (function i2x() {
             
             eventEmitter.on('store', function(type) {
                 if( type === 'ready' ) {
-                    router = routerHandler.create(eventEmitter,config.router);
+                    router = routerHandler.create(eventEmitter,config);
                     action = actionHandler.create(eventEmitter,config.action);
                 }
             });        
