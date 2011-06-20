@@ -5,26 +5,11 @@
     
     - Router: test Subscribe/Unsubscribe
     - Router: Backlog
+    - Router: Presence handling
     - Actions
-    - MultiUser
-    - Webinterface
-    - Virtual XMP Server
-    - Commenting
-    
-    Done: 
-    -----
-    
-    - StoreHandler
-    - New StoreHandler functions
-    - Simple action add/del with database
-    - Extended ircHandler
-    - Extended xmppHandler
-    - Wiring
-    - Rewiring
-    - Basic Error handling
-    - Router basics
-    
-    
+    - Commenting / Structuring
+    [- Webinterface]
+      
 */
 //###################################################################################################
 // Basic Object
