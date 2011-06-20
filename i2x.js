@@ -3,9 +3,8 @@
     Todo:
     -----
     
-    - Router
-        - Subscribe/Unsubscribe
-        - Proper User handling (add/del)
+    - Router: test Subscribe/Unsubscribe
+    - Router: Backlog
     - Actions
     - MultiUser
     - Webinterface
