@@ -3,12 +3,11 @@
     Todo:
     -----
     
-    - Router: test Subscribe/Unsubscribe
+    - Router: Fix Online / Presence
     - Router: Backlog
     - Router: Presence handling
     - Actions
     - Commenting / Structuring
-    [- Webinterface]
       
 */
 //###################################################################################################
