@@ -3,11 +3,10 @@
     Todo:
     -----
     
-    - Router: Fix Online / Presence
     - Router: Backlog
-    - Router: Presence handling
     - Actions
-    - Commenting / Structuring
+    - Error Handling
+    - Router: Help commands
       
 */
 //###################################################################################################
