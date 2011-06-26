@@ -8,7 +8,7 @@
     - Error Handling
     - Router: Help commands
     - Router: Mentions
-      
+    - Encoding
 */
 //###################################################################################################
 // Basic Object
