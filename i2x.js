@@ -4,8 +4,6 @@
     -----
     
     - Backlog complete
-    - Router: Help commands
-    - Router: Mentions
     - Actions
     - Error Handling
 
