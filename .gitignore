@@ -1,2 +1,4 @@
 config.json
-store.db
+*.db
+logs
+.gitstats

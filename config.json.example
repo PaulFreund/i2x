@@ -24,6 +24,7 @@
     "action" : {
     },
     
-    "web" : {
+    "log" : {
+        "folder" : "logs"
     }
 }

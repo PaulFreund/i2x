@@ -3,12 +3,12 @@
     Todo:
     -----
     
-    - Router: Backlog
-    - Actions
-    - Error Handling
+    - Backlog complete
     - Router: Help commands
     - Router: Mentions
-    - Encoding
+    - Actions
+    - Error Handling
+
 */
 //###################################################################################################
 // Basic Object
@@ -22,6 +22,7 @@ I2X = (function i2x() {
         fs = require('fs'),
         util = require('util'),
         events = require('events'),
+        logHandler = require('logHandler'),
         ircHandler = require('ircHandler'),
         xmppHandler = require('xmppHandler'),
         storeHandler = require('storeHandler'),
@@ -33,6 +34,7 @@ I2X = (function i2x() {
     
         self = this, 
         eventEmitter = new events.EventEmitter(),
+        log,
         irc,
         xmpp,
         store,
@@ -51,6 +53,7 @@ I2X = (function i2x() {
             
             var config = JSON.parse(fs.readFileSync(__dirname+'/config.json'));
             
+            log = logHandler.create(eventEmitter, config.log);
             irc = ircHandler.create(eventEmitter, config.irc);
             xmpp = xmppHandler.create(eventEmitter, config.xmpp);
             store = storeHandler.create(eventEmitter, config.store);
