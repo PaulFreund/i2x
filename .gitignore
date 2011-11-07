@@ -2,3 +2,5 @@ config.json
 *.db
 logs
 .gitstats
+feed
+.settings.xml

@@ -1,9 +1,11 @@
 {
+    "debug": true,
     "irc" : {
         "host": "example.com",
         "port": "6667",
         "name": "ExampleNick",
-        "channel": "#examplechannel"
+        "channel": "#examplechannel",
+        "admin": "SomeBody"
     },
 
     "xmpp" : {
@@ -11,20 +13,25 @@
         "port": "5222",
         "jid": "examplebot@example.com",
         "password": "examplepassword",
-        "admin": "exampleadmin@example.com"
     },
 
     "store" : {
         "file": "storage.db"
     },
 
+    "log" : {
+        "folder": "./feed",
+        "date": false
+    },
+
     "router" : {
+        "xmppAdmin": "bigwookie@lvl3.org",
+        "ircChannel": "#examplechannel"
     },
     
     "action" : {
     },
     
-    "log" : {
-        "folder" : "logs"
+    "web" : {
     }
 }

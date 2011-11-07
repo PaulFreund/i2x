@@ -3,74 +3,24 @@
     Todo:
     -----
     
-    - Backlog complete
+    - Router: Backlog
+    - Router: Presence handling
     - Actions
-    - Error Handling
-
+    - Commenting
+      
 */
 //###################################################################################################
-// Basic Object
-I2X = (function i2x() {
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-   
-    var 
-    ////=============================================================================================
-    // Requirements
-    
-        fs = require('fs'),
-        util = require('util'),
-        events = require('events'),
-        logHandler = require('logHandler'),
-        ircHandler = require('ircHandler'),
-        xmppHandler = require('xmppHandler'),
-        storeHandler = require('storeHandler'),
-        routerHandler = require('routerHandler'),
-        actionHandler = require('actionHandler'),
 
-    ////=============================================================================================
-    // Propertys
-    
-        self = this, 
-        eventEmitter = new events.EventEmitter(),
-        log,
-        irc,
-        xmpp,
-        store,
-        router,
-        action,
-        
-    ////=============================================================================================
-    // Methods
-    
-        ////-----------------------------------------------------------------------------------------
-        // Initialize
-        init = function() {
-            process.addListener("unhandledException", function (err) {
-                console.log(err);
-            });
-            
-            var config = JSON.parse(fs.readFileSync(__dirname+'/config.json'));
-            
-            log = logHandler.create(eventEmitter, config.log);
-            irc = ircHandler.create(eventEmitter, config.irc);
-            xmpp = xmppHandler.create(eventEmitter, config.xmpp);
-            store = storeHandler.create(eventEmitter, config.store);
-            
-            eventEmitter.on('store', function(type) {
-                if( type === 'ready' ) {
-                    router = routerHandler.create(eventEmitter,config);
-                    action = actionHandler.create(eventEmitter,config.action);
-                }
-            });        
-        }
-        
+// Load neuron factory
+var neo = require('neo');
 
-    ////=============================================================================================
-    ;
+// Load config 
+neo.neo.config(process.cwd()+'/config.json');
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////
+neo.neo.load('neo-irc'      , function() {});
+neo.neo.load('neo-xmpp'     , function() {});
+neo.neo.load('neo-log'      , function() {});
+neo.neo.load('neo-store'    , function() {});
+neo.neo.load('neo-router'   , function() {});
+//neo.neo.load('neo-action'   , function() {});
 
-    init();
-    
-    /////////////////////////////////////////////////////////////////////////////////////////////////
-}) ();
