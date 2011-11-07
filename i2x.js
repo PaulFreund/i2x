@@ -15,7 +15,7 @@
 var neo = require('neo');
 
 // Load config 
-neo.neo.config(process.cwd()+'/config.json');
+neo.neo.config(__dirname+'/config.json');
 
 neo.neo.load('neo-irc'      , function() {});
 neo.neo.load('neo-xmpp'     , function() {});
