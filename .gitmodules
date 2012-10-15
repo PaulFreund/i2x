@@ -1,4 +1,4 @@
 [submodule "node_modules/neo"]
         path = node_modules/neo
-        url = https://github.com/BigWookie/neo.git
+        url = https://github.com/PaulFreund/neo.git
 
