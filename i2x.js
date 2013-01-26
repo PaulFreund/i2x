@@ -1,5 +1,7 @@
 //###################################################################################################
 /*
+    Copyright (c) since 2012 - Paul Freund 
+    
     Permission is hereby granted, free of charge, to any person
     obtaining a copy of this software and associated documentation
     files (the "Software"), to deal in the Software without
@@ -23,29 +25,22 @@
 */
 //###################################################################################################
 
-//###################################################################################################
-/*
-    Todo:
-    -----
-    
-    - Router: Backlog
-    - Router: Presence handling
-    - Actions
-    - Commenting
-      
-*/
-//###################################################################################################
+var configPath = __dirname+'/config.json';
 
-// Load neuron factory
+// Take command line argument as config path
+if( process.argv[2] !== undefined )
+    configPath = process.argv[2];
+
+// Load factory
 var neo = require('neo');
 
 // Load config 
-neo.neo.config(__dirname+'/config.json');
+neo.neo.config(configPath);
 
 neo.neo.load('neo-irc'      , function() {});
 neo.neo.load('neo-xmpp'     , function() {});
-neo.neo.load('neo-log'      , function() {});
 neo.neo.load('neo-store'    , function() {});
-neo.neo.load('neo-router'   , function() {});
-//neo.neo.load('neo-action'   , function() {});
+neo.neo.load('lib/log.js'      , function() {});
+neo.neo.load('lib/router.js'   , function() {});
+//neo.neo.load('lib/action.js'   , function() {});
 
