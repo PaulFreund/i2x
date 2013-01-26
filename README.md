@@ -14,7 +14,7 @@ Note: Two of the modules in the dependency chain need to be compiled, node-strin
 
 To configure I2X just copy config.json.example to config.json and customize it to fit your needs. 
 
-    // Start I2X and uses config.json in the same folder
+    // Start I2X and use the config.json in the same folder
     node I2X.js                     
     
     // Start I2X with the specified config file
@@ -22,6 +22,6 @@ To configure I2X just copy config.json.example to config.json and customize it t
 
 ## Usage ##
 
-I2X is controlled via the XMPP interface, to get a list of commands, send !help. Note that only the configured admin user gets a list of all commands. Other xmpp users have to be added via !useradd first.
+I2X is controlled via the XMPP interface, to get a list of commands, send !help. Note that only the configured admin user gets a list of all commands. Other xmpp users have to be added by the admin via !useradd first.
 
 
