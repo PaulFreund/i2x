@@ -30,7 +30,7 @@
 		"neo-xmpp": "https://github.com/PaulFreund/neo-xmpp/tarball/master",
 		"neo-store": "https://github.com/PaulFreund/neo-store/tarball/master"
 	},
-	"license": "WTFPL",
+	"license": "MIT",
 	"engines": {
 		"node": ">=v0.6.0"
 	}
