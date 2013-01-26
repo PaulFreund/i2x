@@ -1,0 +1,37 @@
+{
+	"name": "i2x",
+	"preferGlobal": false,
+	"version": "1.0.0",
+	"author": "Paul Freund",
+	"description": "IRC to XMPP Adapter without MUC",
+	"contributors": [
+		{
+			"name": "Paul Freund",
+			"email": "freund.paul@lvl3.org"
+		}
+	],
+	"scripts": {
+		"start": "node ./i2x.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/PaulFreund/I2X"
+	},
+	"keywords": [
+		"i2x",
+		"xmpp",
+		"irc",
+		"muc",
+		"bridge"
+	],
+	"dependencies": {
+		"neo": "https://github.com/PaulFreund/neo/tarball/master",
+		"neo-irc": "https://github.com/PaulFreund/neo-irc/tarball/master",
+		"neo-xmpp": "https://github.com/PaulFreund/neo-xmpp/tarball/master",
+		"neo-store": "https://github.com/PaulFreund/neo-store/tarball/master"
+	},
+	"license": "WTFPL",
+	"engines": {
+		"node": ">=v0.6.0"
+	}
+}
