@@ -12,7 +12,7 @@
         "host": "example.com",
         "port": "5222",
         "jid": "examplebot@example.com",
-        "password": "examplepassword",
+        "password": "examplepassword"
     },
 
     "store" : {
@@ -26,7 +26,7 @@
     },
 
     "router" : {
-        "xmppAdmin": "bigwookie@lvl3.org",
+        "xmppAdmin": "exampleadmin@example.com",
         "ircChannel": "#examplechannel"
     },
     
