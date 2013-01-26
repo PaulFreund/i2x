@@ -42,7 +42,7 @@ I2X.neo.config(configPath);
 I2X.neo.load('neo-irc'      , function() {});
 I2X.neo.load('neo-xmpp'     , function() {});
 I2X.neo.load('neo-store'    , function() {});
-I2X.neo.load('lib/log.js'      , function() {});
-I2X.neo.load('lib/router.js'   , function() {});
-//I2X.neo.load('lib/action.js'   , function() {});
+I2X.neo.load(__dirname+'/lib/log.js'      , function() {});
+I2X.neo.load(__dirname+'/lib/router.js'   , function() {});
+//I2X.neo.load(__dirname+'/lib/action.js'   , function() {});
 
