@@ -20,6 +20,7 @@
     },
 
     "log" : {
+	"enabled": false,
         "folder": "./feed",
         "date": false
     },
