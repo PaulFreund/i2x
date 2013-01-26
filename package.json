@@ -1,5 +1,6 @@
 {
 	"name": "i2x",
+	"main": "i2x",
 	"preferGlobal": false,
 	"version": "1.0.0",
 	"author": "Paul Freund",
