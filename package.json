@@ -25,9 +25,9 @@
 		"muc",
 		"bridge"
 	],
-    "dependencies": {
-        "neo": "https://github.com/PaulFreund/neo/tarball/master"
-    },
+        "dependencies": {
+	        "neojs": "1.0.0"
+        },
 	"optionalDependencies": {
 		"sqlite3": "2.1.5",
 		"node-stringprep": "0.1.5"	
