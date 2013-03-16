@@ -8,7 +8,7 @@ To install I2X just clone the repository and run
 
     npm install
 
-Note: Two of the modules in the dependency chain need to be compiled, node-stringprep and sqlite3. node-stringprep requires libicu ( libicu-dev on ubuntu ) and sqlite3 requires libsqlite3 >= 3.6 ( libsqlite3-dev on ubuntu ).
+Note: Three of the modules in the dependency chain need to be compiled, node-expat, node-stringprep and sqlite3. node-stringprep requires libicu ( libicu-dev on ubuntu ) and sqlite3 requires libsqlite3 >= 3.6 ( libsqlite3-dev on ubuntu ).
 
 ## Configuration ##
 

@@ -25,8 +25,10 @@
 */
 //###################################################################################################
 
+var path = require('path');
+
 // Default config path
-var configPath = __dirname+'/config.json';
+var configPath = path.resolve(__dirname, 'config.json');
 
 // Take first command line argument as config path
 if( process.argv[2] !== undefined )
@@ -42,7 +44,7 @@ I2X.neo.config(configPath);
 I2X.neo.load('neo-irc'      , function() {});
 I2X.neo.load('neo-xmpp'     , function() {});
 I2X.neo.load('neo-store'    , function() {});
-I2X.neo.load(__dirname+'/lib/log.js'      , function() {});
-I2X.neo.load(__dirname+'/lib/router.js'   , function() {});
-//I2X.neo.load(__dirname+'/lib/action.js'   , function() {});
+I2X.neo.load(path.resolve(__dirname, 'lib/log.js')      , function() {});
+I2X.neo.load(path.resolve(__dirname, 'lib/router.js')   , function() {});
+//I2X.neo.load(path.resolve(__dirname, '/lib/action.js')   , function() {});
 

@@ -25,11 +25,12 @@
 		"muc",
 		"bridge"
 	],
-	"dependencies": {
-		"neo": "https://github.com/PaulFreund/neo/tarball/master",
-		"neo-irc": "https://github.com/PaulFreund/neo-irc/tarball/master",
-		"neo-xmpp": "https://github.com/PaulFreund/neo-xmpp/tarball/master",
-		"neo-store": "https://github.com/PaulFreund/neo-store/tarball/master"
+    "dependencies": {
+        "neo": "https://github.com/PaulFreund/neo/tarball/master"
+    },
+	"optionalDependencies": {
+		"sqlite3": "2.1.5",
+		"node-stringprep": "0.1.5"	
 	},
 	"license": "MIT",
 	"engines": {
