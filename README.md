@@ -1,14 +1,23 @@
 # I2X #
 
-I2X is a IRC to XMPP bridge. Many mobile clients don't support MUC, to fill that gap, I2X translates between the two networks.
+I2X is a IRC to XMPP bridge. Many mobile clients don't support MUC, to fill that gap, I2X translates between the two networks ( tested on Linux and Windows ).
 
 ## Installation ##
 
-To install I2X just clone the repository and run 
+You can install I2X with npm 
 
+    npm install I2X
+
+Or by cloning the repository and  install the dependencies
+
+    git clone https://github.com/PaulFreund/I2X.git
+    cd I2X
     npm install
 
-Note: Three of the modules in the dependency chain need to be compiled, node-expat, node-stringprep and sqlite3. node-stringprep requires libicu ( libicu-dev on ubuntu ) and sqlite3 requires libsqlite3 >= 3.6 ( libsqlite3-dev on ubuntu ).
+Note: Three of the modules in the dependency chain need to be compiled, node-expat is required, node-stringprep and sqlite3 are optional. 
+* node-expat requires libexpat ( libexpat-dev on ubuntu )
+* node-stringprep requires libicu ( libicu-dev on ubuntu ) 
+* sqlite3 requires libsqlite3 >= 3.6 ( libsqlite3-dev on ubuntu )
 
 ## Configuration ##
 

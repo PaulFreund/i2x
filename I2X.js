@@ -35,7 +35,7 @@ if( process.argv[2] !== undefined )
     configPath = process.argv[2];
 
 // Load base 
-var I2X = require('neo');
+var I2X = require('neojs');
 
 // Load config 
 I2X.neo.config(configPath);
