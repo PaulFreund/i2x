@@ -1,6 +1,6 @@
 {
-	"name": "I2X",
-	"main": "I2X",
+	"name": "i2x",
+	"main": "i2x",
 	"preferGlobal": false,
 	"version": "1.0.1",
 	"author": "Paul Freund",
@@ -12,14 +12,14 @@
 		}
 	],
 	"scripts": {
-		"start": "node ./I2X.js"
+		"start": "node ./i2x.js"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/PaulFreund/I2X"
+		"url": "https://github.com/PaulFreund/i2x"
 	},
 	"keywords": [
-		"I2X",
+		"i2x",
 		"xmpp",
 		"irc",
 		"muc",
