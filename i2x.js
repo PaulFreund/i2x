@@ -37,14 +37,9 @@ if( process.argv[2] !== undefined )
 // Load base 
 var I2X = require('neojs');
 
-// Load config 
-I2X.neo.config(configPath);
+// Register additional templates
+I2X.neo.register(path.resolve(__dirname, 'lib'));
 
-// Load Modules
-I2X.neo.load('neo-irc'      , function() {});
-I2X.neo.load('neo-xmpp'     , function() {});
-I2X.neo.load('neo-store'    , function() {});
-I2X.neo.load(path.resolve(__dirname, 'lib/log.js')      , function() {});
-I2X.neo.load(path.resolve(__dirname, 'lib/router.js')   , function() {});
-//I2X.neo.load(path.resolve(__dirname, '/lib/action.js')   , function() {});
+// Create objects
+I2X.neo.create(configPath, function() {});
 

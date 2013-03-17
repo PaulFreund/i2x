@@ -1,38 +1,38 @@
-{
-    "debug": true,
-    "irc" : {
+[
+    {
+        "id": "irc",
+        "template": "irc",
         "host": "example.com",
         "port": "6667",
         "name": "ExampleNick",
         "channel": "#examplechannel",
         "admin": "SomeBody"
     },
-
-    "xmpp" : {
+    {
+        "id": "xmpp",
+        "template": "xmpp",
         "host": "example.com",
         "port": "5222",
         "jid": "examplebot@example.com",
         "password": "examplepassword"
     },
-
-    "store" : {
+    {
+        "id": "store",
+        "template": "store",
         "file": "storage.db"
     },
-
-    "log" : {
-	"enabled": false,
+    {
+        "id": "log",
+        "template": "log",
+        "enabled": false,
         "folder": "./feed",
         "date": false
     },
-
-    "router" : {
+    {
+        "id": "router",
+        "template": "router",
+        "depends": ["store", "irc", "xmpp", "log"],
         "xmppAdmin": "exampleadmin@example.com",
         "ircChannel": "#examplechannel"
-    },
-    
-    "action" : {
-    },
-    
-    "web" : {
     }
-}
+]
