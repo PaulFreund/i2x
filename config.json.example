@@ -3,10 +3,8 @@
         "id": "irc",
         "template": "irc",
         "host": "example.com",
-        "port": "6667",
         "name": "ExampleNick",
-        "channel": "#examplechannel",
-        "admin": "SomeBody"
+        "channel": "#examplechannel"
     },
     {
         "id": "xmpp",
@@ -14,24 +12,19 @@
         "host": "example.com",
         "port": "5222",
         "jid": "examplebot@example.com",
-        "password": "examplepassword"
+        "password": "examplepassword",
+        "silent": false,
+        "carbons": false
     },
     {
         "id": "store",
         "template": "store",
-        "file": "storage.db"
-    },
-    {
-        "id": "log",
-        "template": "log",
-        "enabled": false,
-        "folder": "./feed",
-        "date": false
+        "uri": "sqlite://storage.db"
     },
     {
         "id": "router",
         "template": "router",
-        "depends": ["store", "irc", "xmpp", "log"],
+        "depends": ["store", "irc", "xmpp"],
         "xmppAdmin": "exampleadmin@example.com",
         "ircChannel": "#examplechannel"
     }

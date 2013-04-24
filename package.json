@@ -2,7 +2,7 @@
 	"name": "i2x",
 	"main": "i2x",
 	"preferGlobal": false,
-	"version": "1.0.3",
+	"version": "1.1.0",
 	"author": "Paul Freund",
 	"description": "IRC to XMPP Adapter without MUC",
 	"contributors": [
@@ -26,7 +26,7 @@
 		"bridge"
 	],
     "dependencies": {
-	        "neojs": "1.2.1"
+	        "neojs": ">=1.3.1"
         },
 	"optionalDependencies": {
 		"sqlite3": "2.1.5",

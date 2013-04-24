@@ -36,6 +36,7 @@ if( process.argv[2] !== undefined )
 
 // Load base 
 var I2X = require('neojs');
+I2X.neo.enableDebug(false);
 
 // Register additional templates
 I2X.neo.register(path.resolve(__dirname, 'lib'));

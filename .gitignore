@@ -6,3 +6,4 @@ logs
 feed
 .settings.xml
 .idea
+npm-debug.log
